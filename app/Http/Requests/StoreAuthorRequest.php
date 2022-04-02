@@ -25,7 +25,6 @@ class StoreAuthorRequest extends FormRequest
     {
         return [
             'first_name' => 'required',
-            'patronymic' => 'required',
             'last_name' => 'required'
         ];
     }
