@@ -18,10 +18,9 @@ class Book extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['title', 'edition'];
+    protected $fillable = ['title', 'edition', 'author_id'];
 
-//    protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'author_id'];
-    protected $hidden = ['author_id'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'author_id'];
 
     /**
      * Get related author
@@ -36,6 +35,14 @@ class Book extends Model
     public function setAuthorAttribute()
     {
         $this->attributes['author'] = $this->author()->getResults();
+    }
+
+    /**
+     * Set author name in "LastName FN.P." format
+     */
+    public function setAuthorShortNameAttribute($name)
+    {
+        $this->attributes['author_short_name'] = $name;
     }
 
 }

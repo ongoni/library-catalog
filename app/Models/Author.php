@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Author
+ * @property string first_name
+ * @property string|null patronymic
+ * @property string last_name
  * @package App\Models
  * @mixin Builder
  */
@@ -20,7 +23,7 @@ class Author extends Model
 
     protected $fillable = ['first_name', 'patronymic', 'last_name'];
 
-//    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     public static function boot() {
         parent::boot();
@@ -48,6 +51,19 @@ class Author extends Model
     public function setBooksAttribute()
     {
         $this->attributes['books'] = $this->books()->getResults();
+    }
+
+    /**
+     * Get author name in "LastName FN.P." format
+     */
+    public function getShortNameAttribute()
+    {
+        return $this->last_name . ' '
+            . mb_substr($this->first_name, 0, 1) . '.'
+            . ($this->patronymic ?
+                mb_substr($this->patronymic, 0, 1) . '.'
+                : ''
+            );
     }
 
 }
