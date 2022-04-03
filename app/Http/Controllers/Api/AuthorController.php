@@ -40,11 +40,7 @@ class AuthorController extends Controller
      */
     public function store(StoreAuthorRequest $request): Response
     {
-        $author = (new Author())->create([
-            'first_name' => $request->input('first_name'),
-            'patronymic' => $request->input('patronymic'),
-            'last_name' => $request->input('last_name')
-        ]);
+        $author = Author::create($request->all());
 
         return new Response($author, 201);
     }
