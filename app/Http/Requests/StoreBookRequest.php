@@ -26,7 +26,7 @@ class StoreBookRequest extends FormRequest
         return [
             'title' => 'required',
             'publisher' => 'required',
-            'publication_date' => 'required'
+            'author_id' => 'required'
         ];
     }
 }
