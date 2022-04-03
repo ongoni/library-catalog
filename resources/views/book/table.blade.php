@@ -48,7 +48,9 @@
                     {{ $books->links() }}
                 </div>
                 <div class="col-sm-2 d-flex flex-column align-items-center">
-                    <button class="btn btn-outline-dark">Добавить</button>
+                    <form method="GET" action="{{ route('authors.create') }}">
+                        <button class="btn btn-outline-dark">Добавить</button>
+                    </form>
                 </div>
             </div>
         </div>
