@@ -17,3 +17,7 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::resources([
+    'authors' => \App\Http\Controllers\Web\AuthorController::class,
+    'books' => \App\Http\Controllers\Web\BookController::class
+]);
