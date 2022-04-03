@@ -2,63 +2,90 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAuthorRequest;
+use App\Http\Requests\UpdateAuthorRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
-        //
+        $authors = Author::all();
+
+        /**
+         * @var Author $author
+         */
+        foreach ($authors as $author) {
+            $author->setBookCountAttribute();
+        }
+
+        return new Response([
+            'authors' => $authors
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreAuthorRequest $request
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreAuthorRequest $request): Response
     {
-        //
+        $author = (new Author())->create([
+            'first_name' => $request->input('first_name'),
+            'patronymic' => $request->input('patronymic'),
+            'last_name' => $request->input('last_name')
+        ]);
+
+        return new Response($author, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Author  $author
-     * @return \Illuminate\Http\Response
+     * @param Author $author
+     * @return Response
      */
-    public function show(Author $author)
+    public function show(Author $author): Response
     {
-        //
+        $author->setBooksAttribute();
+
+        return new Response($author);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Author  $author
-     * @return \Illuminate\Http\Response
+     * @param UpdateAuthorRequest $request
+     * @param Author $author
+     * @return Response
      */
-    public function update(Request $request, Author $author)
+    public function update(UpdateAuthorRequest $request, Author $author): Response
     {
-        //
+        $author->update($request->all());
+
+        return new Response($author);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Author  $author
-     * @return \Illuminate\Http\Response
+     * @param Author $author
+     * @return Response
      */
-    public function destroy(Author $author)
+    public function destroy(Author $author): Response
     {
-        //
+        $author->delete();
+
+        return new Response();
     }
+
 }
