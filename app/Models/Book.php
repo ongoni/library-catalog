@@ -20,7 +20,8 @@ class Book extends Model
 
     protected $fillable = ['title', 'edition'];
 
-//    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+//    protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'author_id'];
+    protected $hidden = ['author_id'];
 
     /**
      * Get related author
