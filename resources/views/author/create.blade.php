@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form method="POST" action="{{ route('author.store', $author->id) }}">
+            <form method="POST" action="{{ route('author.store') }}">
                 @csrf
                 <div class="form-group">
                     <label for="formGroupFirstName"></label>
