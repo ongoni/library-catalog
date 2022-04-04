@@ -8,10 +8,10 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Название</th>
-                            <th scope="col">Издание</th>
-                            <th scope="col">Автор</th>
+                            <th scope="col" class="text-center">#</th>
+                            <th scope="col" class="text-center">Название</th>
+                            <th scope="col" class="text-center">Издание</th>
+                            <th scope="col" class="text-center">Автор</th>
                         </tr>
                         </thead>
                         <tbody>
