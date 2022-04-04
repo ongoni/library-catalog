@@ -66,4 +66,11 @@ class Author extends Model
             );
     }
 
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' '
+            . ($this->patronymic ? $this->patronymic . ' ' : '')
+            . $this->last_name;
+    }
+
 }
