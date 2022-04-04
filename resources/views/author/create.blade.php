@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <form method="POST" action="{{ route('author.store') }}">
+    <form method="POST" action="{{ route('author.store', $author->id) }}">
         @csrf
         <div class="form-group">
             <label for="formGroupFirstName"></label>
