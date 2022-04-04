@@ -46,7 +46,7 @@ class AuthorController extends Controller
     {
         Author::create($request->all());
 
-        return redirect()->route('authors.index');
+        return redirect()->route('author.index');
     }
 
     /**
@@ -85,7 +85,7 @@ class AuthorController extends Controller
         $author = Author::query()->find($id);
         $author->update($request->all());
 
-        return redirect()->route('authors.index');
+        return redirect()->route('author.index');
     }
 
     /**
@@ -98,6 +98,6 @@ class AuthorController extends Controller
         $author = Author::query()->find($id);
         $author->delete();
 
-        return redirect()->route('authors.index');
+        return redirect()->route('author.index');
     }
 }

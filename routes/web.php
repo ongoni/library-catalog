@@ -18,6 +18,6 @@ Route::get('/', function () {
 });
 
 Route::resources([
-    'authors' => \App\Http\Controllers\Web\AuthorController::class,
-    'books' => \App\Http\Controllers\Web\BookController::class
+    'author' => \App\Http\Controllers\Web\AuthorController::class,
+    'book' => \App\Http\Controllers\Web\BookController::class
 ]);
